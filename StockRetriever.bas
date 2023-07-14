@@ -21,12 +21,12 @@ Sub StockRetrieve()
     link = ""
 
     ' For loop to get each stock price
-    For i = 3 To 36
+    For i = 2 To 28
         ' Skip to the next iteration if an error occurs
         On Error Resume Next
         
         ' Get link to stock
-        link = Sheets("Portfolio").Range("M" & i).Value
+        link = Sheets("Portfolio").Range("K" & i).Value
     
         ' Open a new tab in chrome (javascript)
         bot.ExecuteScript "window.open(arguments[0])", link
@@ -38,7 +38,7 @@ Sub StockRetrieve()
         Set stockPrice = bot.FindElementByXPath("//*[@id='quote-header-info']/div[3]/div[1]/div/fin-streamer[1]")
     
         ' Write stock price to worksheet
-        Sheets("Portfolio").Range("O" & i).Value = stockPrice.Text
+        Sheets("Portfolio").Range("G" & i).Value = stockPrice.Text
         
         ' Close current tab and switch back to previous tab
         bot.ExecuteScript "window.close()"
