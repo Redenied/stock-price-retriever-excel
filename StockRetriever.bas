@@ -1,4 +1,4 @@
-Attribute VB_Name = "Módulo1"
+Attribute VB_Name = "Module1"
 Sub StockRetrieve()
     ' Declare variables
     Dim bot As New WebDriver
