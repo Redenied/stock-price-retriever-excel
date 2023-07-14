@@ -1,56 +1,52 @@
 Sub StockRetrieve2()
+    ' Declare variables
+    Dim bot As New WebDriver
+    Dim stockPrice As WebElement
+    Dim i As Integer
+    Dim link As String
 
-'Declare variables
-Dim bot As New WebDriver
-'Dim stockPrice As Double
-Dim stockPrice As WebElement
-Dim i As Integer
-Dim link As String
+    ' Open Chrome in headless mode (in the background)
+    bot.AddArgument "--headless"
 
-'Open chrome in background
-bot.AddArgument "--headless"
+    ' Extend response time tolerance
+    bot.SetPreference "pageLoadStrategy", "normal"
+    bot.Timeouts.PageLoad = 100000
 
-'Extend response time tolerance
-bot.SetPreference "pageLoadStrategy", "normal"
-bot.Timeouts.PageLoad = 100000
+    ' Start a new Chrome instance
+    bot.Start "chrome"
 
-'Init new Chrome instance
-bot.Start "chrome"
+    ' Initialize variables
+    i = 0
+    link = ""
 
-'Init variables
-i = 0
-'stockPrice = 0
-link = ""
+    ' For loop to get each stock price
+    For i = 4 To 23
+        ' Skip to the next iteration if an error occurs
+        On Error Resume Next
 
-'For loop to get each stock price
-For i = 4 To 23
-    'Skip to the next iteration if an error occurs
-    On Error Resume Next
-    
-    'Link to stock
-    link = Sheets("Ventas").Range("T" & i).Value
+        ' Get the link to the stock
+        link = Sheets("Ventas").Range("T" & i).Value
 
-    'Open up a new tab in chrome (javascript)
-    bot.ExecuteScript "window.open(arguments[0])", link
+        ' Open a new tab in Chrome using JavaScript
+        bot.ExecuteScript "window.open(arguments[0])", link
 
-    'Switch to new tab
-    bot.SwitchToNextWindow
+        ' Switch to the new tab
+        bot.SwitchToNextWindow
 
-    'Store stock price (same position for all stocks)
-    Set stockPrice = bot.FindElementByXPath("//*[@id='quote-header-info']/div[3]/div[1]/div/fin-streamer[1]")
+        ' Find the stock price element (same position for all stocks)
+        Set stockPrice = bot.FindElementByXPath("//*[@id='quote-header-info']/div[3]/div[1]/div/fin-streamer[1]")
 
-    'Write stock price to worksheet
-    Sheets("Ventas").Range("L" & i).Value = stockPrice.Text
-    
-    'Close current tab and switch back to previous tab
-    bot.ExecuteScript "window.close()"
-    bot.SwitchToPreviousWindow
-    
-Next i
+        ' Write the stock price to the worksheet
+        Sheets("Ventas").Range("L" & i).Value = stockPrice.Text
 
-bot.Quit ' Close the browser window
+        ' Close the current tab and switch back to the previous tab
+        bot.ExecuteScript "window.close()"
+        bot.SwitchToPreviousWindow
+    Next i
 
-MsgBox "Stock prices updated successfully uwu"
+    ' Quit the browser
+    bot.Quit
+
+    MsgBox "Stock prices updated successfully!"
 
 End Sub
-
