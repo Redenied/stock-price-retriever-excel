@@ -20,7 +20,6 @@ This VBA script will help any stock investor automatically update their choice s
 2. Place in column 'C' the symbols of the stocks you want to get the share prices. Be careful to write the exact name that you can find on Yahoo Finance.
 3. Fill columns 'D' and 'E' with your average prices in order to calculate the profit.
 4. Fill cell 'D32' with the cash value of your portfolio, to calculate the weight of each portfolio element.
-5. Click
 
 Be careful to not modify column 'K', you can hide it if you want. That's where the macro gets the stock link from.
 Right now the code works with 28 stocks, if you want to add more you need to modify the VBA script where the For loop is and modify the range values.
