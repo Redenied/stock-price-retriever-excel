@@ -9,6 +9,10 @@ This VBA script will help any stock investor automatically update their choice s
 - Chrome web browser
 
 ### Installation:
-
+- Clone this repository
+- Install Selenium WebDriver. I downloaded it from https://github.com/florentbr/SeleniumBasic/releases/tag/v2.0.9.0 (copyrights florentbr)
+- Download the ChromeDriver version that is compatible with your Chrome browser https://chromedriver.chromium.org/downloads
+-   To find out which Chrome version you own:
+-     Go to 
 
 ### Usage:
