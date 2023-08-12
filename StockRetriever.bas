@@ -20,8 +20,8 @@ Sub StockRetrieve()
     i = 0
     link = ""
 
-    ' For loop to get each stock price
-    For i = 2 To 28
+    ' While loop to get each stock price
+    Do While Not IsEmpty(Sheets("Portfolio").Range("M" & i).Value)
         ' Skip to the next iteration if an error occurs
         On Error Resume Next
         
@@ -43,7 +43,10 @@ Sub StockRetrieve()
         ' Close current tab and switch back to previous tab
         bot.ExecuteScript "window.close()"
         bot.SwitchToPreviousWindow
-    Next i
+
+        i = i + 1
+
+    Loop
 
 ' Quit the browser
 bot.Quit
