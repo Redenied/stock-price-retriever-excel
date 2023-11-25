@@ -11,7 +11,7 @@ This VBA script will help any stock investor automatically update their choice s
 ### Installation:
 - Clone this repository
 - Install Selenium WebDriver. I downloaded it from https://github.com/florentbr/SeleniumBasic/releases/tag/v2.0.9.0 (copyrights florentbr)
-- Download the ChromeDriver version that is compatible with your Chrome browser https://chromedriver.chromium.org/downloads
+- Download the ChromeDriver version that is compatible with your Chrome browser https://chromedriver.chromium.org/downloads for older versions or in https://googlechromelabs.github.io/chrome-for-testing/#stable for newer versions
 - To find out which Chrome version you own: Go to Chrome settings > Help > About Google Chrome
 - Copy the ChromeDriver executable 'chromedriver.exe' you downloaded and paste it to your local directory \AppData\Local\SeleniumBasic and replace the existing executable
 
@@ -20,6 +20,9 @@ This VBA script will help any stock investor automatically update their choice s
 2. Place in column 'C' the symbols of the stocks you want to get the share prices. Be careful to write the exact name that you can find on Yahoo Finance.
 3. Fill columns 'D' and 'E' with your average prices in order to calculate the profit.
 4. Fill cell 'D32' with the cash value of your portfolio, to calculate the weight of each portfolio element.
+
+### Troubleshooting:
+-From time to time the code may not work correctly. What you need to do is to download the latest chrome driver available and replace again the driver in your local directory \AppData\Local\SeleniumBasic .
 
 Be careful to not modify column 'K', you can hide it if you want. That's where the macro gets the stock link from.
 Right now the code works with 28 stocks, if you want to add more you need to modify the VBA script where the For loop is and modify the range values.
