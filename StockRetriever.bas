@@ -17,11 +17,11 @@ Sub StockRetrieve()
     bot.Start "chrome"
 
     ' Initialize variables
-    i = 0
+    i = 2
     link = ""
 
     ' While loop to get each stock price
-    Do While Not IsEmpty(Sheets("Portfolio").Range("M" & i).Value)
+    Do While Not IsEmpty(Sheets("Portfolio").Range("K" & i).Value)
         ' Skip to the next iteration if an error occurs
         On Error Resume Next
         
@@ -43,9 +43,8 @@ Sub StockRetrieve()
         ' Close current tab and switch back to previous tab
         bot.ExecuteScript "window.close()"
         bot.SwitchToPreviousWindow
-
+        
         i = i + 1
-
     Loop
 
 ' Quit the browser
@@ -54,3 +53,4 @@ bot.Quit
 MsgBox "Stock prices updated successfully!"
 
 End Sub
+
